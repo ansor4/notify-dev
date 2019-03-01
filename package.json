@@ -1,0 +1,20 @@
+{
+  "name": "notify-dev",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Zephraph <zephraph@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/plugin-retry": "^2.2.0",
+    "@octokit/plugin-throttling": "^2.4.0",
+    "@octokit/rest": "^16.16.3",
+    "circleci-api": "^3.3.1",
+    "dotenv": "^6.2.0",
+    "node-notifier": "^5.4.0",
+    "tslib": "^1.9.3"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.0",
+    "typescript": "^3.3.3333"
+  }
+}
