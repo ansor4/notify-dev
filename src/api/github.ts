@@ -9,24 +9,14 @@ const GitHubWithPlugins = GitHubApi.plugin(throttling).plugin(retry);
 
 const { GH_TOKEN } = safelyFetchEnvs(["GH_TOKEN"]);
 
-interface IssueOptions {
-  owner: string;
-  repo: string;
-  number: number;
-}
-
-type GitHubOptions = Partial<IssueOptions> & {
+type GitHubOptions = {
   dryRun: boolean;
-  owner: string;
-  repo: string;
-  pullRequest: string;
 };
 
 export class GitHub {
   private readonly _github: GitHubApi;
-  private readonly _issueOpts: IssueOptions;
 
-  constructor({ dryRun, owner, repo, pullRequest }: GitHubOptions) {
+  constructor({ dryRun }: GitHubOptions) {
     this._github = new GitHubWithPlugins({
       auth: `token ${GH_TOKEN}`,
 
@@ -52,12 +42,6 @@ export class GitHub {
         }
       }
     });
-
-    this._issueOpts = {
-      owner,
-      repo,
-      number: parseInt(pullRequest.split("/").slice(-1)[0])
-    };
 
     if (dryRun) {
       this._github.hook.wrap("request", (req, opts) => {

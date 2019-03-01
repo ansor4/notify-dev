@@ -1,20 +1,9 @@
 // Module
-import { BuildSummary, CircleCI, CircleCIOptions, GitType } from "circleci-api";
+import { CircleCI, CircleCIOptions, GitType } from "circleci-api";
 
 import { safelyFetchEnvs } from "../envs";
 
 const { CIRCLE_TOKEN } = safelyFetchEnvs(["CIRCLE_TOKEN"]);
-
-interface BuildSummaryExtended extends BuildSummary {
-  workflows?: {
-    job_name: string;
-  };
-}
-
-interface PullRequest {
-  head_sha: string;
-  url: string;
-}
 
 export class Circle {
   private owner: string;
